@@ -83,17 +83,18 @@ public class ListaEstatica {
         return tamanho;
     }
 
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
-    }
+
 
     public void inverter() {
         for (int i = info.length - 1; i >= 0; i--) {
             System.out.println(info[i]);
         }
 
+    }
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
     }
 
 }

@@ -1,7 +1,7 @@
-public class App {
+public class App2 {
     public static void main(String[] args) throws Exception {
 
-        ListaEstatica1 lista = new ListaEstatica1();
+        ListaEstatica lista = new ListaEstatica();
 
         lista.inserir(5);
         lista.inserir(10);

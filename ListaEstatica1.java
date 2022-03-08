@@ -1,9 +1,9 @@
-public class ListaEstastica1 {
+public class ListaEstatica1 {
 
     private int tamanho;
     private int info[] = new int[10];
 
-    public ListaEstastica1() {
+    public ListaEstatica1() {
         this.info = new int[10];
         this.tamanho = 0;
     }
@@ -91,7 +91,9 @@ public class ListaEstastica1 {
     }
 
     public void inverter(){
-        
+        for (int i = info.length - 1; i >= 0; i--) {
+            System.out.println(info[i]);
+        }
     }
 
 }
