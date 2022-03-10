@@ -1,34 +1,31 @@
-public class ListaEstatica {
+package Aula2;
+
+public class ListaEstaticaGenerica<ClasseParametrizada> {
 
     private int tamanho;
     private ClasseParametrizada[] info;
 
-    public ListaEstatica() {
+    public ListaEstaticaGenerica() {
 
         this.tamanho = 0;
         this.info = (ClasseParametrizada[]) new Object[10];
 
     }
 
-    public void redimensionar() {
-
-        ClasseParametrizada novo[];
-        int novoTamanho = info.length + 10;
-        novo = new ClasseParametrizada[novoTamanho];
-        for (int i = 0; i < tamanho - 1; i++) {
-            novo[i] = info[i];
-        }
-        info = novo;
-    }
-
     public void inserir(ClasseParametrizada valor) {
-
         if (tamanho == info.length) {
             redimensionar();
         }
         info[tamanho] = valor;
-
         tamanho = tamanho + 1;
+    }
+
+    public void redimensionar() {
+        ClasseParametrizada[] novo = (ClasseParametrizada[]) new Object[info.length + 10];
+        for (int i = 0; i < tamanho - 1; i++) {
+            novo[i] = info[i];
+        }
+        info = novo;
     }
 
     public void exibir() {
@@ -48,18 +45,20 @@ public class ListaEstatica {
     }
 
     public void retirar(ClasseParametrizada valor) {
-        ClasseParametrizada novoArray[] = new ClasseParametrizada[info.length];
-        for (int posicao = 0; posicao < info.length; posicao++) {
-            if (valor != info[posicao]) {
-                novoArray[posicao] = info[posicao];
+        int posicao = buscar(valor);
+        if (posicao > -1) {
+            for (int i = posicao; i < tamanho - 1; i++) {
+                info[i] = info[i + 1];
             }
+            tamanho--;
         }
-        tamanho = novoArray.length;
     }
 
     public void liberar() {
-        info = new ClasseParametrizada[10];
+		info = (ClasseParametrizada[]) new Object[10];
+		tamanho = 0;
     }
+
 
     public ClasseParametrizada obterElemento(int posicao) {
         for (int i = 0; i < info.length; i++) {
@@ -83,14 +82,15 @@ public class ListaEstatica {
         return tamanho;
     }
 
-
-
-    public void inverter() {
-        for (int i = info.length - 1; i >= 0; i--) {
-            System.out.println(info[i]);
+   /* public void inverter() {
+        if (info[i] != 0) {
+            for (int i = info.length - 1; i >= 0; i--) {
+                System.out.println(info[i]);
+            }
         }
 
-    }
+    }*/
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub

@@ -1,42 +1,43 @@
-public class ListaEstatica1 {
+package Aula1;
+
+public class ListaEstatica {
 
     private int tamanho;
     private int info[] = new int[10];
 
-    public ListaEstatica1() {
+    public ListaEstatica() {
         this.info = new int[10];
         this.tamanho = 0;
     }
     // construtor da classe. Deve criar um vetor para guardar os dados e estabelecer
     // que a lista está vazia;
 
-    public void redimensionar() {
-        int[] novo;
-        int novoTamanho = info.length + 10;
-        novo = new int[novoTamanho];
-        for (int i = 0; i < tamanho - 1; i++) {
-
-            novo[i] = info[i];
-        }
-        info = novo;
-    }
-
     public void inserir(int valor) {
         if (tamanho == info.length) {
             redimensionar();
         }
         info[tamanho] = valor;
-        tamanho = tamanho + 1;
+        tamanho++;
+    }
+
+    public void redimensionar() {
+        int[] novo;
+        int novoTamanho = info.length + 10;
+        novo = new int[novoTamanho];
+        for (int i = 0; i < info.length; i++) {
+            novo[i] = info[i];
+        }
+        info = novo;
     }
 
     public void exibir() {
-        for (int i = 0; i < info.length; i++) {
+        for (int i = 0; i < tamanho; i++) {
             System.out.println(info[i]);
         }
     }
 
     public int buscar(int valor) {
-        for (int i = 0; i < info.length; i++) {
+        for (int i = 0; i <tamanho; i++) {
             if (valor == info[i]) {
                 return i;
             }
@@ -49,9 +50,9 @@ public class ListaEstatica1 {
         novo = new int[info.length];
         int novoContador = 0;
         for (int i = 0; i < tamanho; i++) {
-            if (info[i] != valor) {                     
-            novo[novoContador] = info[i];
-              novoContador++;   
+            if (info[i] != valor) {
+                novo[novoContador] = info[i];
+                novoContador++;
             }
         }
         tamanho = novoContador;
@@ -60,23 +61,23 @@ public class ListaEstatica1 {
 
     public void liberar() {
         info = new int[10];
+        tamanho = 0;
 
     }
 
     public int obterElemento(int posicao) {
-        for (int i = 0; i < info.length; i++) {
-            if (posicao == i) {
-                return info[i];
-            }
-        }
-        throw new IndexOutOfBoundsException("Posição(" + posicao + ") é maior que o array");
+		if (posicao >= 0 && (posicao < tamanho)) {
+			return info[posicao];
+		} else {
+			throw new IndexOutOfBoundsException();
+		}
     }
 
     public boolean estaVazia() {
         if (tamanho == 0) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -90,10 +91,12 @@ public class ListaEstatica1 {
         return super.toString();
     }
 
-    public void inverter(){
-        for (int i = info.length - 1; i >= 0; i--) {
-            System.out.println(info[i]);
-        }
-    }
+    /*
+     * public void inverter(){
+     * for (int i = info.length - 1; i >= 0; i--) {
+     * System.out.println(info[i]);
+     * }
+     * }
+     */
 
 }
