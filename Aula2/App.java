@@ -9,9 +9,10 @@ public class App {
         lista.inserir(10);
         lista.inserir(15);
         lista.inserir(20);
-        //lista.inverter();
+        lista.inserir(25);
+        lista.inverter();
         lista.exibir();
-        System.out.println(lista.buscar(15));
+
 
 
 

@@ -22,7 +22,7 @@ public class ListaEstaticaGenerica<ClasseParametrizada> {
 
     public void redimensionar() {
         ClasseParametrizada[] novo = (ClasseParametrizada[]) new Object[info.length + 10];
-        for (int i = 0; i < tamanho - 1; i++) {
+        for (int i = 0; i < info.length; i++) {
             novo[i] = info[i];
         }
         info = novo;
@@ -51,14 +51,15 @@ public class ListaEstaticaGenerica<ClasseParametrizada> {
                 info[i] = info[i + 1];
             }
             tamanho--;
+
+            info[tamanho] = null;
         }
     }
 
     public void liberar() {
-		info = (ClasseParametrizada[]) new Object[10];
-		tamanho = 0;
+        info = (ClasseParametrizada[]) new Object[10];
+        tamanho = 0;
     }
-
 
     public ClasseParametrizada obterElemento(int posicao) {
         for (int i = 0; i < info.length; i++) {
@@ -82,14 +83,27 @@ public class ListaEstaticaGenerica<ClasseParametrizada> {
         return tamanho;
     }
 
-   /* public void inverter() {
-        if (info[i] != 0) {
-            for (int i = info.length - 1; i >= 0; i--) {
-                System.out.println(info[i]);
-            }
+    public void inverter() {
+        int esquerda = 0;
+        int direita = tamanho - 1;
+
+        int qtdeTrocas = tamanho / 2;
+
+        ClasseParametrizada backup;
+
+        while (qtdeTrocas > 0) {
+            backup = info[esquerda];
+            info[esquerda] = info[direita];
+            info[direita] = backup;
+
+            esquerda++;
+            direita--;
+
+            qtdeTrocas--;
+
         }
 
-    }*/
+    }
 
     @Override
     public String toString() {

@@ -85,6 +85,8 @@ public class ListaEstatica {
         return tamanho;
     }
 
+    
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub
