@@ -2,10 +2,8 @@ package Aula3;
 
 public class NoLista<T> {
 
-    T info;
-    NoLista proximo;
-
-
+    private T info;
+    private NoLista<T> proximo;
 
     public T getInfo() {
         return info;
@@ -23,7 +21,9 @@ public class NoLista<T> {
         this.proximo = proximo;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "NoLista [info=" + info + ", proximo=" + proximo + "]";
+    }
 
 }

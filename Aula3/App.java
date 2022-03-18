@@ -8,8 +8,8 @@ public class App {
 
         //System.out.println(lista.estaVazia());
 
-        lista.inserir(5);
-        System.out.println(lista.estaVazia());
+
+        System.out.println(lista.obterComprimento());
 
     }
 

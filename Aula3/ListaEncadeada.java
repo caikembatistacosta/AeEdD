@@ -16,30 +16,25 @@ public class ListaEncadeada<T> {
 
     public void inserir(T info) {
 
-        NoLista novo = new NoLista();
-        novo.info = (int) info;
-        novo.proximo = primeiro;
+        NoLista<T> novo = new NoLista<>();
+        novo.setInfo(info);
+        novo.setProximo(getPrimeiro());
         this.primeiro = novo;
 
     }
 
     public boolean estaVazia() {
-        if (primeiro == null) {
-            return true;
-        } else {
-            return false;
-
-        }
+        return this.primeiro == null;
     }
 
     public NoLista<T> buscar(T info) {
 
-        NoLista<T> p = primeiro;
+        NoLista<T> p = this.primeiro;
         while (p != null) {
-            if (p.info.equals(info)) {
+            if (p.getInfo().equals(info)) {
                 return p;
             }
-            p = p.proximo;
+            p = p.getProximo();
 
         }
         return null;
@@ -48,36 +43,66 @@ public class ListaEncadeada<T> {
 
     public void retirar(T info) {
 
-        NoLista anterior = null;
-        NoLista p = primeiro;
+        NoLista<T> anterior = null;
+        NoLista<T> p = primeiro;
 
-        while ((p != null) && (!p.info.equals(info))) {
+        while ((p != null) && (!p.getInfo().equals(info))) {
             anterior = p;
-            p = p.proximo;
+            p = p.getProximo();
 
         }
         if (p != null) {
-            if (anterior == null) {
-                this.primeiro = p.getProximo();
+            if (p == primeiro) {
+                primeiro = primeiro.getProximo();
             } else {
-                anterior.proximo = p.getProximo();
+                anterior.setProximo(p.getProximo());
             }
         }
     }
 
-    public int obterElemento() {
+    public int obterComprimento() {
+        int qtdeNos = 0;
 
-        return 0;
+        NoLista<T> p = primeiro;
+
+        while (p != null) {
+            qtdeNos++;
+            p = p.getProximo();
+        }
+        return qtdeNos;
+
     }
 
-    /*public NoLista<T> obterNo(int idx) {
+    public NoLista<T> obterNo(int idx) {
+        if (idx < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        NoLista<T> p = getPrimeiro();
 
-    }*/
+        while ((p != null) && (idx > 0)) {
+            idx--;
+            p = p.getProximo();
+        }
+
+        if (p == null) {
+            throw new IndexOutOfBoundsException();
+
+        }
+        return p;
+    }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
-    }
+        String resultado = "";
 
+        NoLista<T> p = primeiro;
+        while(p != primeiro){
+            if(p != primeiro)
+            resultado += ", ";
+
+            resultado += p.getInfo().toString();
+            p = p.getProximo();
+        }
+        return resultado;
+    }
 }
