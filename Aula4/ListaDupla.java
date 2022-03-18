@@ -28,7 +28,7 @@ public class ListaDupla<T> {
     }
 
     public NoListaDupla<T> buscar(T valor) {
-        
+
         NoListaDupla<T> p = this.primeiro;
         while (p != null) {
             if (p.getInfo().equals(valor)) {
@@ -40,13 +40,13 @@ public class ListaDupla<T> {
         return null;
     }
 
-    public void retirar(T valor){
+    public void retirar(T valor) {
 
         NoListaDupla<T> p = buscar(valor);
-        if (p == null ) {
-            if (primeiro == p ) {
+        if (p == null) {
+            if (primeiro == p) {
                 primeiro = p.getProximo();
-            }else{
+            } else {
                 p.getAnterior().setProximo(p.getProximo());
             }
         }
@@ -56,9 +56,18 @@ public class ListaDupla<T> {
         }
     }
 
+    public void exibirOrdemInversa() {
 
+    }
 
+    public void liberar() {
 
+    }
 
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
+    }
 
 }
